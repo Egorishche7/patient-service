@@ -140,5 +140,5 @@
 
 1. Откройте Postman
 2. Нажмите на кнопку Import
-3. Выберите файл коллекции [Postman-коллекцию](postman/Patient Service API.postman_collection.json)
+3. Выберите файл коллекции postman/Patient Service API.postman_collection.json
 4. Коллекция появится в вашем списке коллекций
