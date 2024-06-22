@@ -48,7 +48,7 @@
     - Создайте пользователей и назначьте им соответствующие роли
     - Создайте User Realm Roles Mapper со свойством Token Claim Name `spring_roles` 
 
-### Шаг 2: Настройка БД
+### Шаг 2: Настройка базы данных
 
 1. Убедитесь, что у вас установлен и запущен MySQL на вашем компьютере
 2. Создайте базу данных (например, с именем `patient-service`)
@@ -130,8 +130,8 @@
 ### Swagger UI
 
 1. Убедитесь, что Spring Boot приложение запущено
-2. Swagger UI доступен по адресу: `http://localhost:8081/swagger-ui.html`
-3. В интерфейсе Swagger UI вы сможете ознакомиться с документацией API и выполнить запросы
+2. Swagger UI доступен по адресу: `http://localhost:8081/swagger-ui/index.html`
+3. В интерфейсе Swagger UI вы можете ознакомиться с документацией API и выполнить запросы
 
 ### Коллекция Postman
 
@@ -140,5 +140,5 @@
 
 1. Откройте Postman
 2. Нажмите на кнопку Import
-3. Выберите файл коллекции `postman/Patient Service API.postman_collection.json`
+3. Выберите файл коллекции [Postman-коллекцию](postman/Patient Service API.postman_collection.json)
 4. Коллекция появится в вашем списке коллекций
