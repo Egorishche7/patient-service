@@ -8,11 +8,11 @@
 
 ## Функциональность
 
-- **GET /patients**: Получить список всех пациентов (доступно для ролей `Practitioner` и `Patient`)
-- **GET /patients/{id}**: Получить информацию о пациенте по ID (доступно для ролей `Practitioner` и `Patient`)
-- **POST /patients**: Создать нового пациента (доступно для роли `Practitioner`)
-- **PUT /patients/{id}**: Обновить информацию о пациенте (доступно для роли `Practitioner`)
-- **DELETE /patients/{id}**: Удалить пациента по ID (доступно для роли `Practitioner`)
+- **GET /patients**: Получить список всех пациентов (доступно для ролей `ROLE_PRACTITIONER` и `ROLE_PATIENT`)
+- **GET /patients/{id}**: Получить информацию о пациенте по ID (доступно для ролей `ROLE_PRACTITIONER` и `ROLE_PATIENT`)
+- **POST /patients**: Создать нового пациента (доступно для роли `ROLE_PRACTITIONER`)
+- **PUT /patients/{id}**: Обновить информацию о пациенте (доступно для роли `ROLE_PRACTITIONER`)
+- **DELETE /patients/{id}**: Удалить пациента по ID (доступно для роли `ROLE_PRACTITIONER`)
 
 ## Используемые технологии
 
@@ -24,9 +24,9 @@
 
 ## Требования
 
-- Java 22
-- Keycloak сервер
-- СУБД MySQL
+- Java: версия 22 или выше
+- Keycloak: версия 26 или выше
+- СУБД MySQL: версия 8.0 или выше
 
 ## Установка и запуск
 
@@ -44,7 +44,7 @@
 2. Настройте Keycloak с необходимыми клиентами и ролями:
     - Создайте Realm (например, `PatientService`)
     - Создайте клиента (например, `patient-service`)
-    - Создайте роли `Practitioner` и `Patient`
+    - Создайте роли `ROLE_PRACTITIONER` и `ROLE_PATIENT`
     - Создайте пользователей и назначьте им соответствующие роли
     - Создайте User Realm Roles Mapper со свойством Token Claim Name `spring_roles` 
 
@@ -56,15 +56,19 @@
 
 ### Шаг 3: Настройка конфигурационного файла
 
-1. Откройте файл src/main/resources/application.yml
-2. Обновите настройки соединения с БД:
+1. Клонируйте репозиторий:
+    ```sh
+    git clone https://github.com/Egorishche7/patient-service
+    ```
+2. Откройте файл src/main/resources/application.yml
+3. Обновите настройки соединения с БД:
    ```
    datasource:
      url: jdbc:mysql://localhost/patient-service
      username: root
      password: 111111
    ```
-3. Обновите настройки Keycloak:
+4. Обновите настройки Keycloak:
    ```
    security:
      oauth2:
@@ -79,10 +83,10 @@
          registration:
            keycloak:
              client-id: patient-service
-             client-secret: gJY6RNJdsMPHHnCyZAjpDLjs14HW1NBW
+             client-secret: 6c5XKj0Naz4It3lKLstxQVphlXTwR3tB
              scope: openid
    ```
-4. Укажите username и password пользователя, у которого есть роль Practitioner:
+5. Укажите username и password пользователя, у которого есть роль `ROLE_PRACTITIONER`:
    ```
    practitioner:
      username: practitioner
@@ -91,11 +95,7 @@
 
 ### Шаг 4: Запуск приложения
 
-1. Клонируйте репозиторий:
-    ```sh
-    git clone https://github.com/Egorishche7/patient-service
-    ```
-2. Перейдите в корневую папку проекта и запустите Spring Boot приложение:
+- Перейдите в корневую папку проекта и запустите Spring Boot приложение:
    ```sh
    mvn spring-boot:run
    ```
@@ -115,11 +115,11 @@
    POST http://localhost:8080/realms/PatientService/protocol/openid-connect/token
    Content-Type: application/x-www-form-urlencoded
    
-   client_id=patient-service&
-   client_secret=gJY6RNJdsMPHHnCyZAjpDLjs14HW1NBW&
-   username=practitioner&
-   password=practitioner&
-   grant_type=password
+   client_id = patient-service &
+   client_secret = 6c5XKj0Naz4It3lKLstxQVphlXTwR3tB &
+   username = practitioner &
+   password = practitioner &
+   grant_type = password
    ```
 2. Используйте полученный токен для выполнения запросов к API, например:
    ```

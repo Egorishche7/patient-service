@@ -20,7 +20,7 @@ spring:
         registration:
           keycloak:
             client-id: patient-service
-            client-secret: gJY6RNJdsMPHHnCyZAjpDLjs14HW1NBW
+            client-secret: 6c5XKj0Naz4It3lKLstxQVphlXTwR3tB
             scope: openid
 server:
   port: 8081
